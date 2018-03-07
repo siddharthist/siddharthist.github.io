@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>siddharthist.github.io - Pinning nixpkgs</title>
+        <link rel="stylesheet" href="../css/mine.css" />
+        <link rel="stylesheet" href="../css/syntax.css" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="../">siddharthist.github.io</a>
+            </div>
+            <nav>
+                <a href="../about.html">About</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <!-- <h1>Pinning nixpkgs</h1> -->
+            <article>
+    <section class="header">
+        Posted on March  6, 2018
+        
+    </section>
+    <section>
+        <h1 id="pinning-nixpkgs">Pinning nixpkgs</h1>
+<p>If you’re already a Nix aficionado, go ahead and skip to “An issue of purity”.</p>
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#pinning-nixpkgs">Pinning nixpkgs</a>
+<ul>
+<li><a href="#why-nix">Why Nix?</a></li>
+<li><a href="#an-issue-of-purity">An issue of purity</a></li>
+<li><a href="#the-solution">The solution</a></li>
+</ul></li>
+</ul>
+<!-- markdown-toc end -->
+<h2 id="why-nix">Why Nix?</h2>
+<p><a href="https://nixos.org/nix/">Nix</a> is an unconventional package manager that attempts to solve issues of <em>impurity</em> while maintaining <em>efficiency</em>. Suppose you’re a developer working on three projects A, B, and C, that depend on the same library, Foo. A and B depend on v1.2.2 and C on v2.7.0. There are two readily available strategies:</p>
+<ol style="list-style-type: decimal">
+<li>Use your system’s package manager (<code>apt-get</code>, <code>yum</code>, <code>pacman</code>, etc.) to install a global version.</li>
+<li>Use your language’s package manager (<code>stack</code>, <code>npm</code>, <code>go</code>, etc.) to install the correct version for each project, separately.</li>
+</ol>
+<p>Approach 1 simply won’t allow you to compile/run all three projects, but approach 2 isn’t wholly satisfying: we really only need two copies of Foo. How can we economize?</p>
+<p>Nix takes a radical approach: no packages are installed system-wide (well, except for things like <code>bash</code> and the GNU coreutils). Nix will ensure that A and B share their copy of Foo (safely and securely) while C gets its own copy. Moreover, if we upgrade B to a new version of Foo, it won’t touch A’s. If this upgrade introduces a bug in our system configuration, we can safely roll it back. <a href="https://nixos.org/nix/manual/#ch-about-nix">There are a lot of advantages</a>.</p>
+<h2 id="an-issue-of-purity">An issue of purity</h2>
+<p>The rest of the post assumes a bit of familiarity with Nix.</p>
+<p>One of Nix’s central tenants is reproducibility: if I build an expression on my machine, it should work the same if I email it to you and you build it on yours. However, most Nix expressions begin with something along the lines of</p>
+<div class="sourceCode"><pre class="sourceCode nix"><code class="sourceCode bash"><span class="kw">{</span> <span class="ex">pkgs</span> ? import <span class="op">&lt;</span>nixpkgs<span class="op">&gt;</span> { <span class="kw">}</span> }:</code></pre></div>
+<p>This line says “This is a function that takes one argument, <code>pkgs</code>. If it isn’t provided, it has a default value, which is <code>import &lt;nixpkgs&gt; { }</code>”. This is great, except that <code>import &lt;nixpkgs&gt; { }</code> gets the <em>system’s</em> nixpkgs. What if you haven’t updated your channels in a while (analogous to updating a package list, e.g. <code>apt-get update</code>), or I’m running an <a href="https://nixos.org/nix/manual/#sec-channels">unstable</a> channel? We need to <em>pin</em> a version of nixpkgs.</p>
+<h2 id="the-solution">The solution</h2>
+<p>First, we create a second Nix expression, which I usually call <code>pinned-pkgs.nix</code>:</p>
+<div class="sourceCode"><pre class="sourceCode nix"><code class="sourceCode bash"><span class="kw">{</span> <span class="ex">pkgs</span> ? import <span class="op">&lt;</span>nixpkgs<span class="op">&gt;</span> { <span class="kw">}</span> }:
+
+<span class="ex">import</span> (pkgs.fetchFromGitHub {
+  <span class="ex">owner</span>  = <span class="st">&quot;NixOS&quot;</span><span class="kw">;</span>
+  <span class="ex">repo</span>   = <span class="st">&quot;nixpkgs&quot;</span><span class="kw">;</span>
+  <span class="fu">rev</span>    = <span class="st">&quot;17.09&quot;</span><span class="kw">;</span>
+  <span class="ex">sha256</span> = <span class="st">&quot;0kpx4h9p1lhjbn1gsil111swa62hmjs9g93xmsavfiki910s73sh&quot;</span><span class="kw">;</span>
+}) <span class="kw">{</span> <span class="kw">}</span></code></pre></div>
+<p>This function looks much like our <code>default.nix</code>, only it doesn’t specify a derivation. It only uses the system’s version of nixpkgs to fetch a particular version from Github, and returns it. Back in our <code>default.nix</code>, we change the first line to</p>
+<div class="sourceCode"><pre class="sourceCode nix"><code class="sourceCode bash"><span class="kw">{</span> <span class="ex">pkgs</span> ? import ./pinned-pkgs.nix { <span class="kw">}</span> }:</code></pre></div>
+<p>This way, if the caller doesn’t specify <code>pkgs</code>, we get a bit-perfect, known-good version. This will be the one automatically used by <code>nix-build</code>. With this solution, we get the best of all worlds:</p>
+<ol style="list-style-type: decimal">
+<li>reproducible builds across machines</li>
+<li>out-of-the box functionality with <code>nix-build</code>, and</li>
+<li>flexibility to override <code>pkgs</code> at the call site.</li>
+</ol>
+    </section>
+</article>
+
+        </main>
+    </body>
+</html>
