@@ -51,7 +51,7 @@
 <!-- markdown-toc end -->
 <h2 id="why-nix">Why Nix?</h2>
 <p><a href="https://nixos.org/nix/">Nix</a> is an unconventional package manager that attempts to solve issues of <em>impurity</em> while maintaining <em>efficiency</em>. Suppose you’re a developer working on three projects A, B, and C, that depend on the same library, Foo. A and B depend on v1.2.2 and C on v2.7.0. There are two readily available strategies:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Use your system’s package manager (<code>apt-get</code>, <code>yum</code>, <code>pacman</code>, etc.) to install a global version.</li>
 <li>Use your language’s package manager (<code>stack</code>, <code>npm</code>, <code>go</code>, etc.) to install the correct version for each project, separately.</li>
 </ol>
@@ -60,22 +60,22 @@
 <h2 id="an-issue-of-purity">An issue of purity</h2>
 <p>The rest of the post assumes a bit of familiarity with Nix.</p>
 <p>One of Nix’s central tenants is reproducibility: if I build an expression on my machine, it should work the same if I email it to you and you build it on yours. However, most Nix expressions begin with something along the lines of</p>
-<div class="sourceCode"><pre class="sourceCode nix"><code class="sourceCode bash"><span class="kw">{</span> <span class="ex">pkgs</span> ? import <span class="op">&lt;</span>nixpkgs<span class="op">&gt;</span> { <span class="kw">}</span> }:</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode nix"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">{</span> <span class="ex">pkgs</span> ? import <span class="op">&lt;</span>nixpkgs<span class="op">&gt;</span> { <span class="kw">}</span> }:</a></code></pre></div>
 <p>This line says “This is a function that takes one argument, <code>pkgs</code>. If it isn’t provided, it has a default value, which is <code>import &lt;nixpkgs&gt; { }</code>”. This is great, except that <code>import &lt;nixpkgs&gt; { }</code> gets the <em>system’s</em> nixpkgs. What if you haven’t updated your channels in a while (analogous to updating a package list, e.g. <code>apt-get update</code>), or I’m running an <a href="https://nixos.org/nix/manual/#sec-channels">unstable</a> channel? We need to <em>pin</em> a version of nixpkgs.</p>
 <h2 id="the-solution">The solution</h2>
 <p>First, we create a second Nix expression, which I usually call <code>pinned-pkgs.nix</code>:</p>
-<div class="sourceCode"><pre class="sourceCode nix"><code class="sourceCode bash"><span class="kw">{</span> <span class="ex">pkgs</span> ? import <span class="op">&lt;</span>nixpkgs<span class="op">&gt;</span> { <span class="kw">}</span> }:
-
-<span class="ex">import</span> (pkgs.fetchFromGitHub {
-  <span class="ex">owner</span>  = <span class="st">&quot;NixOS&quot;</span><span class="kw">;</span>
-  <span class="ex">repo</span>   = <span class="st">&quot;nixpkgs&quot;</span><span class="kw">;</span>
-  <span class="fu">rev</span>    = <span class="st">&quot;17.09&quot;</span><span class="kw">;</span>
-  <span class="ex">sha256</span> = <span class="st">&quot;0kpx4h9p1lhjbn1gsil111swa62hmjs9g93xmsavfiki910s73sh&quot;</span><span class="kw">;</span>
-}) <span class="kw">{</span> <span class="kw">}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode nix"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">{</span> <span class="ex">pkgs</span> ? import <span class="op">&lt;</span>nixpkgs<span class="op">&gt;</span> { <span class="kw">}</span> }:</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="ex">import</span> (pkgs.fetchFromGitHub {</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="ex">owner</span>  = <span class="st">&quot;NixOS&quot;</span><span class="kw">;</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="ex">repo</span>   = <span class="st">&quot;nixpkgs&quot;</span><span class="kw">;</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="fu">rev</span>    = <span class="st">&quot;17.09&quot;</span><span class="kw">;</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="ex">sha256</span> = <span class="st">&quot;0kpx4h9p1lhjbn1gsil111swa62hmjs9g93xmsavfiki910s73sh&quot;</span><span class="kw">;</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">}) <span class="kw">{</span> <span class="kw">}</span></a></code></pre></div>
 <p>This function looks much like our <code>default.nix</code>, only it doesn’t specify a derivation. It only uses the system’s version of nixpkgs to fetch a particular version from Github, and returns it. Back in our <code>default.nix</code>, we change the first line to</p>
-<div class="sourceCode"><pre class="sourceCode nix"><code class="sourceCode bash"><span class="kw">{</span> <span class="ex">pkgs</span> ? import ./pinned-pkgs.nix { <span class="kw">}</span> }:</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode nix"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">{</span> <span class="ex">pkgs</span> ? import ./pinned-pkgs.nix { <span class="kw">}</span> }:</a></code></pre></div>
 <p>This way, if the caller doesn’t specify <code>pkgs</code>, we get a bit-perfect, known-good version. This will be the one automatically used by <code>nix-build</code>. With this solution, we get the best of all worlds:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>reproducible builds across machines</li>
 <li>out-of-the box functionality with <code>nix-build</code>, and</li>
 <li>flexibility to override <code>pkgs</code> at the call site.</li>

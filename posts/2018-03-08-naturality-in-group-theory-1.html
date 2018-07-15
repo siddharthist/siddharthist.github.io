@@ -44,33 +44,30 @@
 <p><strong>Definition.</strong> A <em>group</em> <span class="math inline"><em>G</em></span> consists of:</p>
 <ul>
 <li>a set also denoted <span class="math inline"><em>G</em></span>,</li>
-<li>a binary operation <span class="math inline">⋅ : <em>G</em> × <em>G</em> → <em>G</em></span> called <em>multiplication</em>,</li>
-<li>a unary operation <span class="math inline">( − )<sup>−1</sup> : <em>G</em> → <em>G</em></span> called <em>inversion</em>,</li>
+<li>a binary operation <span class="math inline"> ⋅  : <em>G</em> × <em>G</em> → <em>G</em></span> called <em>multiplication</em>,</li>
+<li>a unary operation <span class="math inline">( − )<sup> − 1</sup> : <em>G</em> → <em>G</em></span> called <em>inversion</em>,</li>
 <li>and an element <span class="math inline"><em>u</em> ∈ <em>G</em></span> called the <em>identity</em>.</li>
 </ul>
 <p>These data are subject to the following axioms:</p>
-<ol style="list-style-type: decimal">
-<li>Associativity: <span class="math inline">(<em>g</em><sub>1</sub> ⋅ <em>g</em><sub>2</sub>)⋅<em>g</em><sub>3</sub> = <em>g</em><sub>1</sub> ⋅ (<em>g</em><sub>2</sub> ⋅ <em>g</em><sub>3</sub>)</span> for all <span class="math inline"><em>g</em><sub>1</sub>, <em>g</em><sub>2</sub>, <em>g</em><sub>3</sub> ∈ <em>G</em></span>.</li>
+<ol type="1">
+<li>Associativity: <span class="math inline">(<em>g</em><sub>1</sub> ⋅ <em>g</em><sub>2</sub>) ⋅ <em>g</em><sub>3</sub> = <em>g</em><sub>1</sub> ⋅ (<em>g</em><sub>2</sub> ⋅ <em>g</em><sub>3</sub>)</span> for all <span class="math inline"><em>g</em><sub>1</sub>, <em>g</em><sub>2</sub>, <em>g</em><sub>3</sub> ∈ <em>G</em></span>.</li>
 <li>Unity: <span class="math inline"><em>u</em> ⋅ <em>g</em> = <em>g</em> ⋅ <em>u</em> = <em>g</em></span> for all <span class="math inline"><em>g</em> ∈ <em>G</em></span>.</li>
-<li>Inverses: <span class="math inline"><em>g</em> ⋅ <em>g</em><sup>−1</sup> = <em>g</em><sup>−1</sup> ⋅ <em>g</em> = <em>u</em></span>.</li>
+<li>Inverses: <span class="math inline"><em>g</em> ⋅ <em>g</em><sup> − 1</sup> = <em>g</em><sup> − 1</sup> ⋅ <em>g</em> = <em>u</em></span>.</li>
 </ol>
-<p>The operation is often abbreviated by juxtaposition, e.g. <span class="math inline"><em>g</em> ⋅ <em>g</em>′=<em>g</em><em>g</em>′</span>.</p>
+<p>The operation is often abbreviated by juxtaposition, e.g. <span class="math inline"><em>g</em> ⋅ <em>g</em>′ = <em>g</em><em>g</em>′</span>.</p>
 </div>
 <div class="definition">
-<p><strong>Definition.</strong> Given groups <span class="math inline"><em>G</em></span> and <span class="math inline"><em>N</em></span>, a function <span class="math inline"><em>f</em> : <em>G</em> → <em>N</em></span> is a <em>group homomorphism</em> if for all <span class="math inline"><em>g</em>, <em>g</em>′∈<em>G</em></span>, <span class="math inline"><em>f</em>(<em>g</em><em>g</em>′) = <em>f</em>(<em>g</em>)<em>f</em>(<em>g</em>′)</span>. A homomorphism is an <em>isomorphism</em> if it has an inverse.</p>
+<p><strong>Definition.</strong> Given groups <span class="math inline"><em>G</em></span> and <span class="math inline"><em>N</em></span>, a function <span class="math inline"><em>f</em> : <em>G</em> → <em>N</em></span> is a <em>group homomorphism</em> if for all <span class="math inline"><em>g</em>, <em>g</em>′ ∈ <em>G</em></span>, <span class="math inline"><em>f</em>(<em>g</em><em>g</em>′) = <em>f</em>(<em>g</em>)<em>f</em>(<em>g</em>′)</span>. A homomorphism is an <em>isomorphism</em> if it has an inverse.</p>
 </div>
 <h1 id="automorphism-groups">Automorphism groups</h1>
 <p><em>Automorphism groups</em> are an important class of examples. They have the self-isomorphisms (<em>automorphisms</em>) of some algebraic object as the elements and composition as the operation (the identity function serves as a unit).</p>
 <p>The simplest example is the symmetric group <span class="math inline">𝔖<sub><em>X</em></sub></span> on a set <span class="math inline"><em>X</em></span> has bijections <span class="math inline"><em>X</em> → <em>X</em></span> as elements. All other automorphism groups are subgroups of this one; composed of functions that respect some sort of structure on <span class="math inline"><em>X</em></span>.</p>
-<p>The automorphism group of a group <span class="math inline"><em>G</em></span> is the set of group isomorphisms <span class="math inline"><em>G</em> → <em>G</em></span>. For every <span class="math inline"><em>g</em> ∈ <em>G</em></span>, <em>(left) conjugation by <span class="math inline"><em>g</em></span></em>, the function given by <span class="math inline"><em>x</em> ↦ <em>g</em><em>x</em><em>g</em><sup>−1</sup></span> is an isomorphism of <span class="math inline"><em>g</em></span>. Automorphisms that arise from conjugation are called <em>inner automorphisms</em>. The composition of two inner automorphisms is again inner, so they form a (normal) subgroup of the whole automorphism group.</p>
+<p>The automorphism group of a group <span class="math inline"><em>G</em></span> is the set of group isomorphisms <span class="math inline"><em>G</em> → <em>G</em></span>. For every <span class="math inline"><em>g</em> ∈ <em>G</em></span>, <em>(left) conjugation by <span class="math inline"><em>g</em></span></em>, the function given by <span class="math inline"><em>x</em> ↦ <em>g</em><em>x</em><em>g</em><sup> − 1</sup></span> is an isomorphism of <span class="math inline"><em>g</em></span>. Automorphisms that arise from conjugation are called <em>inner automorphisms</em>. The composition of two inner automorphisms is again inner, so they form a (normal) subgroup of the whole automorphism group.</p>
 <p>The automorphism group or <em>general linear group</em> of a vector space <span class="math inline"><em>V</em></span> over a field <span class="math inline"><em>F</em></span> consists of invertible linear transformations <span class="math inline"><em>V</em> → <em>V</em></span>. The concrete realization of this group is the <em>matrix group</em> over <span class="math inline"><em>F</em></span>, the group of invertible <span class="math inline"><em>n</em> × <em>n</em></span> matrices with entries in the with matrix multiplication as the operation. The automorphism group of a field, considered as a 1-dimensional vector space over itself, is just the group of units (invertible elements under multiplication).</p>
 <p>In general, the automorphism group of an object <span class="math inline"><em>O</em></span> is denoted <span class="math inline">Aut(<em>O</em>)</span>.</p>
 <h2 id="commutative-diagrams">Commutative diagrams</h2>
 <p>Commutative diagrams play a central organizational role in category theory. They will allow us to build intuitions and draw connections across the posts in this series. Given functions <span class="math inline"><em>f</em> : <em>A</em> → <em>B</em></span>, <span class="math inline"><em>g</em> : <em>B</em> → <em>C</em></span>, and <span class="math inline"><em>h</em> : <em>A</em> → <em>C</em></span>, the equality <span class="math inline"><em>g</em> ∘ <em>f</em> = <em>h</em></span> can be expressed using a <em>commutative diagram</em>, as follows:</p>
-<div class="figure">
-<img src="../images/naturality-in-group-theory/triangle.pdf.svg" />
-
-</div>
+<p><img src="../images/naturality-in-group-theory/triangle.pdf.svg" /></p>
 <p>When any two directed paths with the same endpoints taken through such a diagram are equal, the diagram <em>commutes</em>.</p>
 <h2 id="group-actions">Group actions</h2>
 <p>Automorphism groups are used to define the general and pervasive notion of a group “acting” on an object.</p>
@@ -78,21 +75,21 @@
 <p><strong>Definition.</strong> Let <span class="math inline"><em>X</em></span> be a set and <span class="math inline"><em>G</em></span> a group. An action of <span class="math inline"><em>G</em></span> on <span class="math inline"><em>X</em></span> is a group homomorphism <span class="math inline"><em>ρ</em> : <em>G</em> → 𝔖<sub><em>X</em></sub></span>. A <em><span class="math inline"><em>G</em></span>-set</em> is a set equipped with an action by <span class="math inline"><em>G</em></span>.</p>
 </div>
 <p>Equivalently, a group action is an function <span class="math inline"><em>ρ</em> : <em>G</em> × <em>X</em> → <em>X</em></span> that obeys the following axioms:</p>
-<ol style="list-style-type: decimal">
-<li>Identity: for all <span class="math inline"><em>x</em> ∈ <em>X</em></span>, <span class="math inline"><em>ρ</em>(<em>u</em>, <em>x</em>)=<em>x</em></span></li>
-<li>Composition: for all <span class="math inline"><em>x</em> ∈ <em>X</em></span> and <span class="math inline"><em>g</em>, <em>g</em>′∈<em>G</em></span>, <span class="math inline"><em>ρ</em>(<em>g</em>, <em>ρ</em>(<em>g</em>′,<em>x</em>)) = <em>f</em>(<em>g</em><em>g</em>′,<em>x</em>)</span></li>
+<ol type="1">
+<li>Identity: for all <span class="math inline"><em>x</em> ∈ <em>X</em></span>, <span class="math inline"><em>ρ</em>(<em>u</em>, <em>x</em>) = <em>x</em></span></li>
+<li>Composition: for all <span class="math inline"><em>x</em> ∈ <em>X</em></span> and <span class="math inline"><em>g</em>, <em>g</em>′ ∈ <em>G</em></span>, <span class="math inline"><em>ρ</em>(<em>g</em>, <em>ρ</em>(<em>g</em>′, <em>x</em>)) = <em>f</em>(<em>g</em><em>g</em>′, <em>x</em>)</span></li>
 </ol>
 <p>Actions are also called <em>permutation representations</em>. It is often convenient to curry the first argument, writing <span class="math inline"><em>ρ</em>(<em>g</em>)</span> for the function <span class="math inline"><em>x</em> ↦ <em>ρ</em>(<em>g</em>, <em>x</em>)</span>.</p>
 <p>Every group acts on itself</p>
 <ul>
 <li>by left multiplication <span class="math inline"><em>x</em> ↦ <em>g</em><em>x</em></span>,</li>
 <li>by right multiplication <span class="math inline"><em>x</em> ↦ <em>x</em><em>g</em></span>,</li>
-<li>by left conjugation <span class="math inline"><em>x</em> ↦ <em>g</em><em>x</em><em>g</em><sup>−1</sup></span>,</li>
-<li>by right conjugation <span class="math inline"><em>x</em> ↦ <em>g</em><sup>−1</sup><em>x</em><em>g</em></span>, and</li>
+<li>by left conjugation <span class="math inline"><em>x</em> ↦ <em>g</em><em>x</em><em>g</em><sup> − 1</sup></span>,</li>
+<li>by right conjugation <span class="math inline"><em>x</em> ↦ <em>g</em><sup> − 1</sup><em>x</em><em>g</em></span>, and</li>
 <li>trivially, <span class="math inline"><em>x</em> ↦ <em>x</em></span>.</li>
 </ul>
 <p>(In fact, this <em>trivial action</em> works for any group and any underlying set).</p>
-<p>When are two <span class="math inline"><em>G</em></span>-sets “the same”? What is a good definition of isomorphism between them? Consider two actions of the two-element group <span class="math inline"><em>G</em> ≔ ℤ/2ℤ = {0, 1}</span> on a two element set <span class="math inline"><em>X</em> ≔ {<em>a</em>, <em>b</em>}</span>. Since we know <span class="math inline"><em>ρ</em>(0)=id<sub><em>X</em></sub></span> by definition of an action, it remains to define <span class="math inline"><em>ρ</em>(1)</span>. There are only two possibilities:</p>
+<p>When are two <span class="math inline"><em>G</em></span>-sets “the same”? What is a good definition of isomorphism between them? Consider two actions of the two-element group <span class="math inline"><em>G</em> ≔ ℤ/2ℤ = {0, 1}</span> on a two element set <span class="math inline"><em>X</em> ≔ {<em>a</em>, <em>b</em>}</span>. Since we know <span class="math inline"><em>ρ</em>(0) = id<sub><em>X</em></sub></span> by definition of an action, it remains to define <span class="math inline"><em>ρ</em>(1)</span>. There are only two possibilities:</p>
 <ul>
 <li><span class="math inline"><em>a</em> ↦ <em>a</em></span> and <span class="math inline"><em>b</em> ↦ <em>b</em></span>, or</li>
 <li><span class="math inline"><em>a</em> ↦ <em>b</em></span> and <span class="math inline"><em>b</em> ↦ <em>a</em></span>.</li>
@@ -101,16 +98,13 @@
 <div class="definition">
 <strong>Definition.</strong> An <em>isomorphism</em> between two <span class="math inline"><em>G</em></span>-sets <span class="math inline">(<em>X</em>, <em>ρ</em>)</span> and <span class="math inline">(<em>Y</em>, <em>σ</em>)</span> is a bijective function <span class="math inline"><em>f</em> : <em>X</em> → <em>Y</em></span> that <em>intertwines</em> the action of <span class="math inline"><em>G</em></span>, that is,
 <div class="display">
-<br /><span class="math display"><em>f</em> ∘ <em>ρ</em>(<em>g</em>)=<em>σ</em>(<em>g</em>)∘<em>f</em></span><br />
+<br /><span class="math display"><em>f</em> ∘ <em>ρ</em>(<em>g</em>) = <em>σ</em>(<em>g</em>) ∘ <em>f</em></span><br />
 </div>
 <p>for any <span class="math inline"><em>g</em> ∈ <em>G</em></span>. In other words, the following diagram commutes:</p>
-<div class="figure">
-<img src="../images/naturality-in-group-theory/g-sets.pdf.svg" />
-
-</div>
+<p><img src="../images/naturality-in-group-theory/g-sets.pdf.svg" /></p>
 <p>A map making this diagram commute is also called <em>equivariant</em>.</p>
 </div>
-<p>This definition works in the sense that there is no isomorphism between the actions considered above. It also feels right: when we consider <span class="math inline"><em>ρ</em>(<em>g</em>)</span> and <span class="math inline"><em>σ</em>(<em>g</em>)</span> as unary operations on <span class="math inline"><em>X</em></span> and <span class="math inline"><em>Y</em></span>, intertwining them is like obeying the rule <span class="math inline"><em>f</em>(<em>g</em><sup>−1</sup>)=<em>f</em>(<em>g</em>)<sup>−1</sup></span> that applies to normal group homomorphisms.</p>
+<p>This definition works in the sense that there is no isomorphism between the actions considered above. It also feels right: when we consider <span class="math inline"><em>ρ</em>(<em>g</em>)</span> and <span class="math inline"><em>σ</em>(<em>g</em>)</span> as unary operations on <span class="math inline"><em>X</em></span> and <span class="math inline"><em>Y</em></span>, intertwining them is like obeying the rule <span class="math inline"><em>f</em>(<em>g</em><sup> − 1</sup>) = <em>f</em>(<em>g</em>)<sup> − 1</sup></span> that applies to normal group homomorphisms.</p>
 <h2 id="linear-representations">Linear representations</h2>
 <p>Many group actions come with a spatial flavor.</p>
 <ul>
@@ -124,26 +118,23 @@
 <p><strong>Definition.</strong> Let <span class="math inline"><em>V</em></span> be a vector space over <span class="math inline"><em>F</em></span>, and <span class="math inline"><em>G</em></span> a group. A <em>(linear) representation</em> of <span class="math inline"><em>G</em></span> on <span class="math inline"><em>V</em></span> is a group homomorphism <span class="math inline"><em>ρ</em> : <em>G</em> → Aut(<em>V</em>)</span>.</p>
 </div>
 <p>If <span class="math inline"><em>ρ</em> : <em>G</em> → Aut(<em>V</em>)</span> is a group representation, the following equalities hold:</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline"><em>ρ</em>(<em>g</em>)(<em>v</em> + <em>w</em>)=<em>ρ</em>(<em>g</em>)(<em>v</em>)+<em>ρ</em>(<em>g</em>)(<em>w</em>)</span>,</li>
-<li><span class="math inline"><em>ρ</em>(<em>g</em>)(<em>c</em> · <em>v</em>)=<em>c</em> · <em>ρ</em>(<em>g</em>)(<em>v</em>)</span>,</li>
+<ol type="1">
+<li><span class="math inline"><em>ρ</em>(<em>g</em>)(<em>v</em> + <em>w</em>) = <em>ρ</em>(<em>g</em>)(<em>v</em>) + <em>ρ</em>(<em>g</em>)(<em>w</em>)</span>,</li>
+<li><span class="math inline"><em>ρ</em>(<em>g</em>)(<em>c</em> · <em>v</em>) = <em>c</em> · <em>ρ</em>(<em>g</em>)(<em>v</em>)</span>,</li>
 </ol>
 <p>for all <span class="math inline"><em>g</em> ∈ <em>G</em></span>, <span class="math inline"><em>v</em>, <em>w</em> ∈ <em>V</em></span>, and <span class="math inline"><em>c</em> ∈ <em>F</em></span> by virtue of <span class="math inline"><em>ρ</em>(<em>g</em>)</span> being a linear transformation, and</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li><span class="math inline"><em>ρ</em>(<em>g</em>)(<em>ρ</em>(<em>g</em>′)(<em>v</em>)) = <em>ρ</em>(<em>g</em><em>g</em>′)(<em>v</em>)</span>,</li>
 </ol>
-<p>for all <span class="math inline"><em>g</em>, <em>g</em>′∈<em>G</em></span> and <span class="math inline"><em>v</em> ∈ <em>V</em></span> since <span class="math inline"><em>ρ</em></span> is a group homomorphism.</p>
+<p>for all <span class="math inline"><em>g</em>, <em>g</em>′ ∈ <em>G</em></span> and <span class="math inline"><em>v</em> ∈ <em>V</em></span> since <span class="math inline"><em>ρ</em></span> is a group homomorphism.</p>
 <p>Let <span class="math inline">(<em>X</em>, <em>ρ</em>)</span> be a finite <span class="math inline"><em>G</em></span>-set, let <span class="math inline"><em>n</em> ≔ |<em>X</em>|</span>, and let <span class="math inline"><em>V</em></span> be a <span class="math inline"><em>n</em></span>-dimensional vector space over <span class="math inline"><em>F</em></span>. Choose a basis <span class="math inline">{<em>b</em><sub><em>x</em></sub>}<sub><em>x</em> ∈ <em>X</em></sub></span> for <span class="math inline"><em>V</em></span>, indexed by the elements in <span class="math inline"><em>X</em></span>. The <em>regular representation</em> of <span class="math inline"><em>G</em></span> on <span class="math inline"><em>V</em></span> is the one that permutes the basis elements according to <span class="math inline"><em>ρ</em></span>, that is <span class="math inline"><em>b</em><sub><em>x</em></sub> ↦ <em>b</em><sub><em>ρ</em>(<em>g</em>, <em>x</em>)</sub></span>.</p>
 <div class="definition">
 <strong>Definition.</strong> Borrowing from the definition for <span class="math inline"><em>G</em></span>-sets, an <em>isomorphism</em> between two representations <span class="math inline">(<em>V</em>, <em>ρ</em>)</span> and <span class="math inline">(<em>W</em>, <em>σ</em>)</span> is an invertible linear transformation <span class="math inline"><em>f</em> : <em>V</em> → <em>W</em></span> that <em>intertwines</em> the representations of <span class="math inline"><em>G</em></span>, that is,
 <div class="display">
-<br /><span class="math display"><em>f</em> ∘ <em>ρ</em>(<em>g</em>)=<em>σ</em>(<em>g</em>)∘<em>f</em></span><br />
+<br /><span class="math display"><em>f</em> ∘ <em>ρ</em>(<em>g</em>) = <em>σ</em>(<em>g</em>) ∘ <em>f</em></span><br />
 </div>
 <p>for any <span class="math inline"><em>g</em> ∈ <em>G</em></span>. In other words, the following diagram commutes:</p>
-<div class="figure">
-<img src="../images/naturality-in-group-theory/linear-rep.pdf.svg" />
-
-</div>
+<p><img src="../images/naturality-in-group-theory/linear-rep.pdf.svg" /></p>
 <p>A map making this diagram commute is also called <em>equivariant</em>.</p>
 </div>
 <h2 id="conclusion">Conclusion</h2>
