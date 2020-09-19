@@ -109,21 +109,21 @@ section.header {
     transition: width 0.2s, height 0.4s;
 }
 
-main img:hover:after {
+#content img:hover:after {
     -webkit-transition: width 0.2s, height 0.4s; /* Safari */
     transition: width 0.2s, height 0.4s;
 }
 
-main a, main a:visited {
+#content a, #content a:visited {
     color: #1EAEDB;
     cursor: pointer;
 }
 
-main a:hover, main a:focus{
+#content a:hover, #content a:focus{
     color: #96838E;
 }
 
-main blockquote {
+#content blockquote {
     margin-left: 1em;
     padding-left: 1em;
     border-left: 2px solid #CCC;
